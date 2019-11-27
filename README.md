@@ -28,7 +28,7 @@ python cli.py  path/to/file or gcs://path/to/file
 ## Detection results
 
 |image_description|text_detection|document_text_detection|
-|---|:---:|---:|
+|:---:|:---:|:---:|
 |original|![](https://raw.githubusercontent.com/wakamezake/gcp_ocr/master/sample/1_eOkU7BNyO5Avh1xu62FxQw.png)|![](https://raw.githubusercontent.com/wakamezake/gcp_ocr/master/sample/1_eOkU7BNyO5Avh1xu62FxQw.png)|
 |detection_block|![](https://raw.githubusercontent.com/wakamezake/gcp_ocr/master/sample/text_detection_block.jpg)|![](https://raw.githubusercontent.com/wakamezake/gcp_ocr/master/sample/document_detection_block.jpg)|
 |detection_paragraph|![](https://raw.githubusercontent.com/wakamezake/gcp_ocr/master/sample/text_detection_para.jpg)|![](https://raw.githubusercontent.com/wakamezake/gcp_ocr/master/sample/document_detection_para.jpg)|
