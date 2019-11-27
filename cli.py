@@ -49,7 +49,7 @@ def document_detection():
 def main():
     args = get_arguments()
     detect_mode = args.mode
-    if detect_mode in {"text", "document"}:
+    if detect_mode not in {"text", "document"}:
         raise ValueError("{} not supported".format(detect_mode))
 
     gcs_prefix = "gs://"
@@ -73,7 +73,7 @@ def main():
                 content = image_file.read()
             image = types.Image(content=content)
             print('Waiting for operation to complete...')
-            response = client.text_detection(image=image)
+            response = client.document_text_detection(image=image)
             pprint(response)
             # https://github.com/googleapis/google-cloud-python/issues/3485
             serialized = MessageToJson(response)
