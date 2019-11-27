@@ -18,7 +18,7 @@ if not data_path.exists():
 def get_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument("path", type=str, help="gcs link or local file path")
-    parser.add_argument("--mode", "m", type=str, default="text",
+    parser.add_argument("--mode", "-m", type=str, default="text",
                         help="text or document detection default(=text)")
     _args = parser.parse_args()
     return _args
