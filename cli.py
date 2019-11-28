@@ -31,19 +31,14 @@ def is_support_audio_encoding(audio_config, input_config):
     return False
 
 
-def detection(mode):
+def detection(mode, client, image):
     if mode == "text":
-        text_detection()
+        response = client.text_detection(image=image)
     else:
-        document_detection()
-
-
-def text_detection():
-    pass
-
-
-def document_detection():
-    pass
+        response = client.document_text_detection(image=image)
+    # https://github.com/googleapis/google-cloud-python/issues/3485
+    serialized = MessageToJson(response)
+    return serialized
 
 
 def main():
@@ -59,10 +54,7 @@ def main():
     if args.path.startswith(gcs_prefix):
         image = vision.types.Image()
         image.source.image_uri = str(file_path)
-        print('Waiting for operation to complete...')
-        response = client.text_detection(image=image)
-        # https://github.com/googleapis/google-cloud-python/issues/3485
-        serialized = MessageToJson(response)
+        serialized = detection(mode=detect_mode, client=client, image=image)
         with open("text_detection_result.json", "w", encoding="utf-8") as f:
             f.write(serialized)
     else:
@@ -73,10 +65,7 @@ def main():
                 content = image_file.read()
             image = types.Image(content=content)
             print('Waiting for operation to complete...')
-            response = client.document_text_detection(image=image)
-            pprint(response)
-            # https://github.com/googleapis/google-cloud-python/issues/3485
-            serialized = MessageToJson(response)
+            serialized = detection(mode=detect_mode, client=client, image=image)
             with open("text_detection_result.json", "w", encoding="utf-8") as f:
                 f.write(serialized)
 
